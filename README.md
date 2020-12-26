@@ -47,3 +47,10 @@ with Varnish before being exposed to the internet.
   in kubernetes.
 - The poetry lock file can be used to pin packages (if packages are not
   installed all at once using "poetry add plone" like I did for demo purposes)
+
+## Disadvantages
+
+- The buildout cache is not used in this setup.
+- It is hard to pin transitive dependencies
+- The developer needs a powerful machine to run the prod Kubernetes cluster.
+- Probably some more stuff, I didn't think of...
