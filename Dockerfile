@@ -13,9 +13,7 @@ RUN ln -s /app/busykoala `poetry run python -c "import setuptools as _; print('/
 
 RUN poetry run mkwsgiinstance -d instance -u admin:admin
 RUN sed '/include/a \ \ <include package="busykoala.poc"\ \/>' instance/etc/site.zcml
-RUN cat instance/etc/site.zcml
-RUN ls instance
-RUN ls instance/var/log
+RUN sed -i 's/127.0.0.1/0.0.0.0/' instance/etc/zope.ini
 
 EXPOSE 8080
-CMD poetry run runwsgi -v instance/etc/zope.ini
+ENTRYPOINT ["poetry", "run", "runwsgi", "-v", "instance/etc/zope.ini"]
